@@ -7,7 +7,7 @@
 	<session-factory>
 		<!-- Database connection settings -->
 		<property name="connection.driver_class">org.postgresql.Driver</property>
-		<property name="connection.url">jdbc:postgresql://root:2NdAa8Mu5jDNyqzCq1wt5W8bD2be1fpI@dpg-cq18bvtds78s73djil8g-a/renderdb_rwwf</property>
+		<property name="connection.url">jdbc:postgresql://dpg-cq18bvtds78s73djil8g-a/renderdb_rwwf</property>
 		<property name="connection.username">root</property>
 		<property name="connection.password">2NdAa8Mu5jDNyqzCq1wt5W8bD2be1fpI</property>
 		
