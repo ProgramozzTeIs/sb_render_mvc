@@ -18,7 +18,17 @@ public class User {
 	
 	@Column(name = "name")
 	private String name;
+	
+	@Column(name = "pwd")
+	private String pwd;
+	
+	@Column(name = "healthpoint")
+	private int hp;
+	
+	@Column(name = "best_steps")
+	private Integer bestSteps;
 
+	
 	public int getId() {
 		return id;
 	}
@@ -35,12 +45,27 @@ public class User {
 		this.name = name;
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", name=" + name + "]";
+	public String getPwd() {
+		return pwd;
 	}
-	
-	
-	
-	
+
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+
+	public int getHp() {
+		return hp;
+	}
+
+	public void setHp(int hp) {
+		this.hp = hp;
+	}
+
+	public Integer getBestSteps() {
+		return bestSteps;
+	}
+
+	public void setBestSteps(Integer bestSteps) {
+		this.bestSteps = bestSteps;
+	}
 }

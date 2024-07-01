@@ -4,29 +4,85 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import pti.sb_render_mvc.db.Database;
-import pti.sb_render_mvc.model.User;
+import pti.sb_render_mvc.dto.UserDto;
+import pti.sb_render_mvc.service.AppService;
+
 
 @Controller
 public class AppController {
 
-	private Database db;
-	
+	private AppService service;
+
 	
 	@Autowired
-	public AppController(Database db) {
+	public AppController(AppService service) {
 		super();
-		this.db = db;
+		this.service = service;
 	}
 	
 	
 	@GetMapping("/")
-	public String index(Model model) {
+	public String index() {
+		return "index.html";
+	}
+	
+	
+	@PostMapping("/user")
+	public String login(
+				Model model,
+				@RequestParam("uname") String userName,
+				@RequestParam("upwd") String userPassword
+			)
+	{
+		String targetPage = "";
 		
-		User user = db.getUserById(1);
+		UserDto userDto = service.doLogin(userName, userPassword);
+		if(userDto != null) {
+			
+			targetPage = "treasuregame.html";
+			model.addAttribute("userDto", userDto);
+		}
+		else {
+			
+			targetPage = "index.html";
+		}
 		
-		model.addAttribute("user", user);
+		return targetPage;
+	}
+	
+	
+	@GetMapping("/user/game")
+	public String gameFinished(
+				@RequestParam("uid") int userId,
+				@RequestParam("gamewin") int win,
+				@RequestParam("gamesteps") int steps
+			) {
+		
+		
+		
 		return "index.html";
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
